@@ -4,6 +4,7 @@
 #
 # [1031] 两个非重叠子数组的最大和 
 #
+from itertools import accumulate
 from typing import List
 # @lc code=start
 class Solution:
