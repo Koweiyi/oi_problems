@@ -8,8 +8,18 @@ from typing import List
 # @lc code=start
 class Solution:
     def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
+        s = list(accumulate(nums, initial=0))  # nums 的前缀和
+        ans = 0
+        def f(firstLen: int, secondLen: int) -> None:
+            nonlocal ans
+            maxSumA = 0
+            for i in range(firstLen + secondLen, len(s)):
+                maxSumA = max(maxSumA, s[i - secondLen] - s[i - secondLen - firstLen])
+                ans = max(ans, maxSumA + s[i] - s[i - secondLen])
+        f(firstLen, secondLen)  # 左 a 右 b
+        f(secondLen, firstLen)  # 左 b 右 a
+        return ans
 
-        pass
 # @lc code=end
 
 
