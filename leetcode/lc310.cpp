@@ -2,7 +2,7 @@
  * @Author: Koweiyi 1423376854@qq.com
  * @Date: 2023-04-27 15:04:42
  * @LastEditors: Koweiyi 1423376854@qq.com
- * @LastEditTime: 2023-04-27 16:41:14
+ * @LastEditTime: 2023-04-27 16:50:49
  * @FilePath: \oi_problems\leetcode\lc310.cpp
  * @Description:
  *
@@ -69,7 +69,7 @@
 
 /**
  * 思路：一眼树的直径,简单来说
- * 树的直径  最小数高
+ * 树的直径  最小树高
  *   1         1
  *   2         1
  *   3         2
