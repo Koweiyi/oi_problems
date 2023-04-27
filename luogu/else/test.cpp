@@ -48,9 +48,6 @@ inline void out(ll a)
 int main(int argc, char const *argv[])
 {
     ios::sync_with_stdio(0), cin.tie(0);
-    int a, b;
-    cin >> a >> b;
-    int x = a + b;
-    cout << x << endl;
+    cout << "ÄãºÃ" << endl;
     return 0;
 }
