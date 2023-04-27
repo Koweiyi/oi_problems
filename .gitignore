@@ -1,3 +1,6 @@
 *.exe
 *.out
+*.json
 .vscode
+.lcpr_data
+
