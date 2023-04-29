@@ -1,8 +1,10 @@
 *.exe
 *.out
+*.o
 *.json
 .out
 .vscode
 .lcpr_data
 bin
 
+makefile
