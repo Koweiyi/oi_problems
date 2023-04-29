@@ -6,3 +6,7 @@
 .vscode
 .lcpr_data
 bin
+CMakeFiles
+*.cmake 
+CmakeCache.txt
+makefile

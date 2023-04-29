@@ -1,5 +1,6 @@
 #include<iostream>
+using namespace std;
 
 void Log(const char* s){
-    std::cout << s << std::endl;  
+    cout << s << endl;
 }
