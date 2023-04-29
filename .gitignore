@@ -9,4 +9,5 @@ CMakeFiles
 *.cmake 
 CmakeCache.txt
 bin/
-Makefile/
+build/
+Makefile
