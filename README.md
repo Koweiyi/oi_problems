@@ -11,5 +11,9 @@
 3. 牛客则是记录一些笔试题目，还有按照知识点分类的题目
     - [**牛客主页**](https://www.nowcoder.com/users/361234500)<br><br>
 
-最后是我的[**gihub主页**](https://github.com/Koweiyi)啦！可以的话给个star，
+我的[**gihub主页**](https://github.com/Koweiyi), 可以的话给个star!!!
 
+---
+---
+分享我最爱的一张壁纸:
+![智子](/assets/pics/bgp3.jpg "智子")
