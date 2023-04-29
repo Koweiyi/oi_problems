@@ -10,4 +10,5 @@ CMakeFiles
 CmakeCache.txt
 bin/
 build/
+test/
 Makefile
