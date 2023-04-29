@@ -9,4 +9,3 @@ bin
 CMakeFiles
 *.cmake 
 CmakeCache.txt
-makefile
