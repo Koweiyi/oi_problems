@@ -68,22 +68,19 @@ using namespace std;
 class Solution {
 public:
     vector<int> g[100005];
-    int dfs(int x, vector<int> &t){
-        if (g[x].size() == 0)
-            return 0;
-        int res = INT_MIN;
-        for(int y: g[x]){
-            res = max(res, t[x] + dfs(y, t));
-        }
-        return res;
-    }
     int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) {
-        for(int i = 0 ; i < n ; i ++){
-            if(i != headID){
+        for(int i = 0 ; i < n ; i ++)
+            if(i != headID)
                 g[manager[i]].push_back(i);
-            }
-        }
-        return dfs(headID, informTime);
+            
+        function<int(int)> dfs = [&](int i) -> int{
+            if(g[i].size() == 0) return 0;
+            int res = INT_MIN;
+            for(int j : g[i])
+                res = max(res, dfs(j) + informTime[i]);
+            return res;
+        };
+        return dfs(headID);
     }
 };
 // @lc code=end
