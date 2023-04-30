@@ -60,7 +60,7 @@
  * 1 <= nums.length <= 10^5
  * 1 <= nums[i] <= 10^9
  * 0 <= limit <= 10^9
- * 
+ * 思路：单调队列+滑动窗口
  * 
  */
 #include<bits/stdc++.h>
