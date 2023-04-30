@@ -73,7 +73,7 @@
 using namespace std;
 // @lc code=start
 
-// 使用链表 O(nk)解法
+// 使用链表模拟 时间(nk) 空间O(n)
 class Solution1 {
   public:
     int findTheWinner(int n, int k) {
@@ -97,15 +97,15 @@ class Solution1 {
     }
 };
 
-// 使用队列
-class Solution2{
+// 使用队列模拟 时间 O(nk) 空间O(n)
+class Solution2 {
   public:
     int findTheWinner(int n, int k) {
         queue<int> q;
         for (int i = 1; i <= n; i++)
             q.push(i);
         while (q.size() > 1) {
-            for (int i = 0; i < k - 1; i ++) {
+            for (int i = 0; i < k - 1; i++) {
                 q.push(q.front());
                 q.pop();
             }
@@ -115,17 +115,19 @@ class Solution2{
     }
 };
 
-class Solution3{
+// 使用递归 时间O(n), 空间O(n)
+// f(n, k) = (f(n - 1, k) + k - 1) % n + 1
+class Solution3 {
   public:
-    int findTheWinner(int n, int k){
+    int findTheWinner(int n, int k) {
         if (n == 1)
             return 1;
         return (findTheWinner(n - 1, k) + k - 1) % n + 1;
     }
 };
 
-// O(n)时间, O(1)空间解法
-class Solution4{
+// 将递归转化为递推 O(n)时间, O(1)空间解法
+class Solution4 {
   public:
     int findTheWinner(int n, int k) {
         int res = 1;
