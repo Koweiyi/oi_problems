@@ -30,24 +30,21 @@ inline void out(ll a){
 }
 
 const int maxn = 100005;
-ll a[maxn], sum[maxn], l[maxn];
+ll a[maxn], s[maxn], l[maxn];
 int main(int argc, char const *argv[]){
     ios::sync_with_stdio(0),std::cin.tie(0);
-    ll n;
+    int n;
     std::cin >> n;
-    repp(i, 1, n){
-        std::cin >> a[i];
-        sum[i] = sum[i - 1] + a[i];
-    }
+    repp(i, 1, n) std::cin >> a[i], s[i] = s[i - 1] + a[i];
+    stack<int> stk;
     ll res = 0;
-    stack<ll> s;
-    repp(i, 1, n + 1){
-        while(!s.empty() && a[i] < a[s.top()]){
-            res = max(res, (sum[i - 1] - sum[l[s.top()]]) * a[s.top()]);
-            s.pop();
+    repp(i, 1, n + 1){ // n + 1 是因为要保证所有元素出栈
+        while(!stk.empty() && a[i] < a[stk.top()]){
+            res = max(res,(s[i - 1] - s[l[stk.top()]]) * a[stk.top()]);
+            stk.pop();
         }
-        l[i] = s.empty() ? 0 : s.top();
-        s.push(i);
+        l[i] = stk.empty() ? 0 :stk.top();
+        stk.push(i);
     }
     std::cout << res << endl;
     return 0;
