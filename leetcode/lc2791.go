@@ -61,30 +61,29 @@
  */
 package main
 // @lc code=start
-func countPalindromePaths(parent []int, s string) int64 {
-	res := 0
+func countPalindromePaths(parent []int, s string) (res int64) {
 	n := len(parent)
 	g := make([][]int, n)
 	for i := 1 ; i < n ; i ++ {
 		p := parent[i]
 		g[p] = append(g[p], i)
-	}
-
+	} 
 	cnt := map[int]int{0:1}
-	var dfs func(int, int) 
+
+	var dfs func(int, int)
 	dfs = func(i, xor int) {
-		for _, w := range g[i]{
-			x := xor ^ (1 << (s[w] - 'a'))
-			res += cnt[x]
+		for _, j := range g[i]{
+			x := xor ^ (1 << (s[j] - 'a'))
+			res += int64(cnt[x])
 			for i := 0 ; i < 26 ; i ++ {
-				res += cnt[x ^ (1 << i)]
+				res += int64(cnt[x ^ (1 << i)])
 			}
 			cnt[x] ++
-			dfs(w, x)
+			dfs(j, x)
 		}
 	}
 	dfs(0, 0)
-	return int64(res)
+	return
 }
 // @lc code=end
 
