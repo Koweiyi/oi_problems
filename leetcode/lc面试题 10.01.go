@@ -62,7 +62,7 @@ func merge(A []int, m int, B []int, n int)  {
 
 /*
 // @lcpr case=start
-// [1,2,3,0,0,0]\n3\n[2,5,6]\n3
+// [1,2,3,0,0,0]\n3[2,5,6]\n3\n
 // @lcpr case=end
 
  */

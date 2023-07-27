@@ -70,7 +70,7 @@ func leftRightDifference(nums []int) []int {
 	ls := 0
 	for i, x := range nums{
 		rs -= x 
-		nums[i] = abs(rs, ls)
+		nums[i] = abs(rs , ls)
 		ls += x
 	}
 	return nums
@@ -79,7 +79,7 @@ func abs(a, b int) int {
 	if a > b{
 		return a - b
 	}
-	return b - a
+	return b
 }
 // @lc code=end
 
