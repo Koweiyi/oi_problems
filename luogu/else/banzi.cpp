@@ -1,3 +1,13 @@
+/*
+ * @Author: koweiyi 1423376854@qq.com
+ * @Date: 2023-04-26 15:18:15
+ * @LastEditors: koweiyi 1423376854@qq.com
+ * @LastEditTime: 2023-06-13 10:07:20
+ * @FilePath: /oi_problems/luogu/else/banzi.cpp
+ * @Description: 
+ * 
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved. 
+ */
 #include <bits/stdc++.h>
 #define mem(a, b) memset(a, b, sizeof a)
 #define rep(i, n, m) for (int i = n; i <= m; i++)
