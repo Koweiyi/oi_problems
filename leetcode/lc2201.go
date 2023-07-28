@@ -84,19 +84,17 @@ type TreeNode struct {
 }
 // @lc code=start
 func digArtifacts(n int, artifacts [][]int, dig [][]int) int {
-	type t struct{
-		x, y int
-	}
-	record := map[t]bool{}
+	type pair struct{ x, y int}
+	record := map[pair]bool{}
 	for _, d := range dig{
-		record[t{d[0], d[1]}] = true
+		record[pair{d[0], d[1]}] = true
 	}
 	res := 0
 	next:
 		for _, a := range artifacts{
 			for i := a[0] ; i <= a[2] ; i ++ {
 				for j := a[1] ; j <= a[3] ; j ++{
-					if !record[t{i, j}]{
+					if !record[pair{i, j}]{
 						continue next
 					}
 				}
