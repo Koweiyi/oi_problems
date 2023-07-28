@@ -69,9 +69,7 @@ type TreeNode struct {
 }
 // @lc code=start
 func reconstructMatrix(upper int, lower int, colsum []int) (res [][]int) {
-	res = append(res, nil)
-	res = append(res, nil)
-
+	res = make([][]int, 2)	
 	for _, x := range colsum {
 		if x == 2{
 			if upper <= 0 || lower <= 0{

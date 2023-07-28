@@ -57,12 +57,31 @@
 package leetcode
 type TreeNode struct {
     Val int
-    Right *TreeNode
     Left *TreeNode
+    Right *TreeNode
 }
 // @lc code=start
 func minDeletions(s string) int {
-	
+	cnt := map[rune]int{}
+	exit := map[int]bool{}
+	for _, x := range s{
+		cnt[x] ++
+	}
+	res := 0
+	for _, v := range cnt{
+		if exit[v]{
+			i := v - 1
+			for ;  i > 0 && exit[i] ; i --{}
+			if i > 0{
+				exit[i] = true
+			}
+			res += v - i
+		}else{ 
+			exit[v] = true
+		}
+	}
+	return res 
+
 }
 // @lc code=end
 
