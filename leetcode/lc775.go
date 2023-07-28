@@ -69,42 +69,34 @@ type TreeNode struct {
 }
 // @lc code=start
 func mergeAndCount(arr []int, l int, m int, r int) int {
-	temp := make([]int, r-l+1)
-	i := l
-	j := m + 1
-	k := 0
-	inversions := 0
-
+	tmp := make([]int, r - l + 1)
+	i, j, k, cnt := l, m + 1, 0, 0
 	for i <= m && j <= r {
 		if arr[i] <= arr[j] {
-			temp[k] = arr[i]
-			k++
-			i++
-		} else {
-			temp[k] = arr[j]
-			k++
-			j++
-			inversions += (m - i + 1)
+			tmp[k] = arr[i]
+			k ++ 
+			i ++
+		}else{
+			tmp[k] = arr[j]
+			k ++
+			j ++
+			cnt += m - i + 1
 		}
 	}
-
 	for i <= m {
-		temp[k] = arr[i]
-		k++
-		i++
+		tmp[k] = arr[i]
+		k ++
+		i ++
 	}
-
 	for j <= r {
-		temp[k] = arr[j]
-		k++
-		j++
+		tmp[k] = arr[j]
+		k ++
+		j ++
 	}
-
-	for p := l; p <= r; p++ {
-		arr[p] = temp[p-l]
+	for p := l ; p <= r ; p ++ {
+		arr[p] = tmp[p - l]
 	}
-
-	return inversions
+	return cnt
 }
 
 func mergeSortAndCount(arr []int, l int, r int) int {
@@ -125,15 +117,24 @@ func countInversions(arr []int) int {
 func isIdealPermutation(nums []int) bool {
 	tmp := make([]int, len(nums))
 	copy(tmp, nums)
-	Total := countInversions(tmp)
-	cnt := 0
+	tot := countInversions(tmp)
+
+	cnt := 0 
 	for i := 0 ; i < len(nums) - 1 ; i ++ {
 		if nums[i] > nums[i + 1] {
 			cnt ++
 		}
-	} 
-	return cnt == Total
+	}
+	return cnt == tot
 }
+
+func abs(x int) int{
+	if x > 0{
+		return x 
+	}
+	return -x 
+}
+
 // @lc code=end
 
 
@@ -145,6 +146,9 @@ func isIdealPermutation(nums []int) bool {
 
 // @lcpr case=start
 // [1,2,0]\n
+// @lcpr case=end
+// @lcpr case=start
+// [0,2,1]\n
 // @lcpr case=end
 
  */
