@@ -76,15 +76,21 @@ type TreeNode struct {
 func countPalindromicSubsequence(s string) int {
 	mp := make([][]int, 26)
 	for i, x := range s {
-		mp[x - 'a'] = append(mp[x-'a'], i)
+		mp[x - 'a'] = append(mp[x - 'a'], i)
 	}
 	res := 0 
 	for _, x := range mp{
 		if len(x) >= 3{
-			res += (len(x) * (len(x) - 1) * (len(x) - 2)) / 6 
+			res ++ 
 		}
-		for i := 0 ; i < len(x) - 1 ; i ++ {
-			res += (x[i + 1] - x[i] - 1) * (i + 1) * (len(x) - i - 1)
+		if len(x) >= 2{
+			record := map[byte]bool{}
+			for i := x[0] + 1 ; i < x[len(x) - 1] ; i ++ {
+				if s[i] != s[x[0]] && !record[s[i]]{
+					res ++ 
+					record[s[i]] = true
+				}
+			}
 		}
 	}
 	return res 
