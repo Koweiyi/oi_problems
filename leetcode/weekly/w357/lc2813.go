@@ -99,8 +99,7 @@ func findMaximumElegance(items [][]int, k int) int64 {
 			}
 		}else if len(dup) > 0 && !vis[t[1]]{
 			vis[t[1]] = true
-			total_profit += t[0]
-			total_profit -= dup[len(dup) - 1]
+			total_profit += t[0] - dup[len(dup) - 1]
 			dup = dup[:len(dup) - 1]
 		}
 		res = max(res, total_profit + len(vis) * len(vis))
