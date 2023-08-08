@@ -89,17 +89,14 @@ func maximumSafenessFactor(grid [][]int) int {
 	for i := 0 ; i < n ; i ++ {
 		dis[i] = make([]int, n)
 	}
-	for i := 0; i < n ; i ++{
-		for j := 0 ; j < n ; j ++ {
-			dis[i][j] = -1
-		}
-	}
 	q := make([]point, 0)
 	for i := 0 ; i < n ; i ++ {
 		for j := 0 ; j < n ; j ++ {
 			if grid[i][j] == 1{
 				q = append(q, point{i, j})
 				dis[i][j] = 0
+			}else{
+				dis[i][j] = -1
 			}
 		}
 	}
@@ -119,9 +116,12 @@ func maximumSafenessFactor(grid [][]int) int {
 				}
 			}			
 		}
-		group = append(group, q)
+		if q != nil{
+			group = append(group, q)
+		}
 	}
 
+	//并查集模板
 	fa := make([]int, n * n)
 	for i := range fa {
 		fa[i] = i
@@ -138,7 +138,7 @@ func maximumSafenessFactor(grid [][]int) int {
 		fa[find(x)] = find(y)
 	}
 
-	for res := len(group) - 2 ; res > 0 ; res -- {
+	for res := len(group) - 1 ; res > 0 ; res -- {
 		for _, p := range group[res]{
 			i, j := p.x, p.y
 			for k := range d{
