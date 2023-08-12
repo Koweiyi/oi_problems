@@ -80,22 +80,42 @@ type TreeNode struct {
  *     Right *TreeNode
  * }
  */
+
+
+func reverseOddLevels1(root *TreeNode) *TreeNode {
+	// 方法一: dfs 
+	var dfs func(n1, n2 *TreeNode, isEven bool)
+	dfs = func(n1, n2 *TreeNode, isEven bool) {
+		if n1 == nil {return}
+		if isEven{
+			n1.Val, n2.Val = n2.Val, n1.Val 
+		}
+		dfs(n1.Left, n2.Right, !isEven)
+		dfs(n1.Right, n2.Left, !isEven)
+	}
+	dfs(root.Left, root.Right, true)
+	return root
+}
+
 func reverseOddLevels(root *TreeNode) *TreeNode {
-	cur := 1
+
+	// 方法二: bfs 
 	q := []*TreeNode{root}
-	for q[0].Left != nil {
+	level := 1
+	for q[0].Left != nil{
 		tmp := []*TreeNode{}
 		for _, node := range q{
 			tmp = append(tmp, node.Left)
 			tmp = append(tmp, node.Right)
 		}
-		q = tmp
-		if cur == 1{
-			for i := 0 ; i < len(q) / 2 ; i ++ {
-				q[i].Val, q[len(q) - i - 1].Val = q[len(q) - i - 1].Val, q[i].Val
+		if level == 1{
+			for i := 0 ; i < len(tmp) / 2 ; i ++ {
+				tmp[i].Val, tmp[len(tmp) - i - 1].Val = tmp[len(tmp) - i - 1].Val, tmp[i].Val
 			}
+			
 		}
-		cur ^= 1
+		q = tmp
+		level ^= 1 
 	}
 	return root
 }
