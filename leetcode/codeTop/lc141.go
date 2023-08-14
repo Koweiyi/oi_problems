@@ -66,8 +66,6 @@
  *
  */
 package leetcode
-
-import "container/heap"
 type ListNode struct {
     Val int
 	Next *ListNode
@@ -84,15 +82,18 @@ func hasCycle(head *ListNode) bool {
 	if head == nil {
 		return false
 	}
-	slow, fast := head, head.Next
-	for slow != fast{
-		if fast == nil || fast.Next == nil{
-			return false
-		}
+	slow, fast := head, head
+	for fast != nil {
 		slow = slow.Next
+		if fast.Next == nil{
+			break
+		}
 		fast = fast.Next.Next
+		if fast == slow{
+			return true
+		}
 	}
-	return true
+	return false
 }
 // @lc code=end
 
