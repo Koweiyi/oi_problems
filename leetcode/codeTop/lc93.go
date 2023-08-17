@@ -88,7 +88,8 @@ func restoreIpAddresses(s string) (res []string) {
 			}
 			return
 		}
-		// 选当前字母 check 的逻辑是 s[pre:i + 1]是否是合法数值字符串，并传化为数字之后 在[0, 255]之间
+		// 选当前字母 check 的逻辑是 s[pre:i + 1]是否是合法数值字符串，
+		// 							并传化为数字之后 在[0, 255]之间
 		if cnt < 4 && check(s[pre:i+1]) {
 			ip = append(ip, s[pre:i+1])
 			dfs(i+1, i+1, cnt+1)
