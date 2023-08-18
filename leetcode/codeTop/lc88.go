@@ -7,10 +7,10 @@
  * https://leetcode.cn/problems/merge-sorted-array/description/
  *
  * algorithms
- * Easy (52.80%)
- * Likes:    2049
+ * Easy (52.52%)
+ * Likes:    1983
  * Dislikes: 0
- * Total Accepted:    967.8K
+ * Total Accepted:    949.8K
  * Total Submissions: 1.8M
  * Testcase Example:  '[1,2,3,0,0,0]\n3\n[2,5,6]\n3'
  *
@@ -68,29 +68,28 @@
 package leetcode
 type TreeNode struct {
     Val int
-    Left *TreeNode
     Right *TreeNode
+    Left *TreeNode
 }
 // @lc code=start
 func merge(nums1 []int, m int, nums2 []int, n int)  {
 	cur := m + n - 1
-	m --
-	n -- 
-	for ; m >= 0 && n >= 0 ; cur --{
-		if nums1[m] > nums2[n]{
-			nums1[cur] = nums1[m]
+	for m > 0 && n > 0{
+		if nums1[m - 1] >= nums2[n - 1]{
+			nums1[cur] = nums1[m - 1]
 			m --
+			cur --
 		}else{
-			nums1[cur] = nums2[n]
-			n -- 
+			nums1[cur] = nums2[n - 1]
+			n --
+			cur --
 		}
 	}
-	for n >= 0{
-		nums1[cur] = nums2[n]
-		cur -- 
-		n --
+	for n > 0{
+		nums1[cur] = nums2[n - 1]
+		cur -- ;n --
 	}
-	return 
+
 }
 // @lc code=end
 
