@@ -3,7 +3,6 @@ package main
 type TreeNode struct {
 	// map 实现可以用 map[rune]*TreeNode
 	children [26]*TreeNode
-
     score int 
     is_end bool
 }

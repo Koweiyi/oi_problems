@@ -7,6 +7,23 @@ import (
 	"os"
 )
 
+// 写个并查集板子
+type UnionFind struct{
+	root []int 
+	mn []int
+	mx []int
+}
+
+func NewUnionFind(n int) *UnionFind{
+	root := make([]int, n + 1)
+	for i := range root{
+		root[i] = i 
+	}
+	return &UnionFind{
+
+	}
+}
+
 const N = 200_010
 
 var s, d = [N]int{}, [N]int{}

@@ -71,9 +71,57 @@ type ListNode struct {
 	Next *ListNode
 }
 // @lc code=start
-func decodeString(s string) string {
 
+
+func decodeString(s string) string {
+    // 预处理出每一个[ 对应的 ] 所在的位置， 遇到进行递归括号内字符串就好了
+
+    // code
+    st := []int{}
+    record := map[int]int{}
+    for i := 0 ; i < len(s) ; i ++{
+        if s[i] == '['{
+            st = append(st, i)
+        }
+        if s[i] == ']'{
+            record[st[len(st) - 1]] = i 
+            st = st[:len(st) - 1]
+        }
+    }
+
+    var dfs func(l, r int) string
+    dfs = func(l, r int) string {
+        res := []rune{}
+        for i := l ; i <= r ; {
+            if isalph(s[i]) {
+                res = append(res, rune(s[i]))
+                i ++
+            }else if isdigit(s[i]){
+                num := int(s[i] - '0')
+                for i + 1 <= r && isdigit(s[i + 1]){
+                    i ++
+                    num = num * 10 + int(s[i] - '0')
+                }
+                sub := dfs(i + 2, record[i + 1] - 1)
+                for j := 0 ; j < num ; j ++ {
+                    res = append(res, []rune(sub)...)
+                }
+                i = record[i + 1] + 1
+            }
+        }
+        return string(res)
+    }
+    return dfs(0, len(s) - 1)
 }
+
+func isdigit(b byte) bool{
+    return '0' <= b && b <= '9'
+}
+
+func isalph(b byte) bool{
+    return 'a' <= b && b <= 'z'
+}
+
 // @lc code=end
 
 
