@@ -43,15 +43,11 @@
  *
  *
  */
-package leetcode
+package main
 
-import (
-	"math/rand"
-	"strings"
-	"time"
+import "fmt"
 
-	"golang.org/x/text/number"
-)
+
 type TreeNode struct {
     Val int
     Left *TreeNode
@@ -62,8 +58,9 @@ type ListNode struct {
     Next *ListNode
 }
 // @lc code=start
+
+var cnt int
 func sortArray(nums []int) []int {
-	rand.Seed(time.Now().UnixNano())
 	QuickSort(nums, 0, len(nums) - 1)
 	return nums 
 }
@@ -77,11 +74,9 @@ func QuickSort(nums []int, l, r int) {
 }
 
 func partition(nums []int, l, r int) int {
-	random := rand.Int() % (r - l + 1) + l 
-	nums[random], nums[r] = nums[r], nums[random]
-
 	i := l 
 	for j := l ; j < r ; j ++ {
+		cnt ++
 		if nums[j] < nums[r]{
 			if i != j{
 				nums[i], nums[j] = nums[j], nums[i]
@@ -91,6 +86,12 @@ func partition(nums []int, l, r int) int {
 	}
 	nums[i], nums[r] = nums[r], nums[i]
 	return i 
+}
+
+func main(){
+	nums := []int{14,6,18,43,22,50}
+	sortArray(nums)
+	fmt.Println(cnt)
 }
 // @lc code=end
 

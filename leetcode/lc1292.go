@@ -61,7 +61,31 @@ type ListNode struct {
 // @lc code=start
 func maxSideLength(mat [][]int, threshold int) int {
 
+	m, n := len(mat), len(mat[0])
+	pre_sum := make([][]int, len(mat) + 1)
+	for i := range pre_sum{
+		pre_sum[i] = make([]int, len(mat[0]) + 1)
+	}
+	for i := 0 ; i < m ; i ++ {
+		for j := 0 ; j < n ; j ++ {
+			pre_sum[i + 1][j + 1] = pre_sum[i + 1][j] + pre_sum[i][j + 1] - pre_sum[i][j] + mat[i][j]
+		}
+	}
+	res := 0
+	for i := 0 ; i < m ; i ++ {
+		for j := 0 ; j < n ; j ++{
+			// 枚举可以改二分会快一点
+			for l := 1 ; i + l - 1 < m && j + l - 1 < n ; l ++ {
+				rx, ry := i + l, j + l 
+				if pre_sum[rx][ry] - pre_sum[rx][j] - pre_sum[i][ry] + pre_sum[i][j] <= threshold{
+					res = max(res, l)
+				}
+			}
+		}
+	}
+	return res 
 }
+func max(a, b int) int {if a > b {return a} ; return b}
 // @lc code=end
 
 
