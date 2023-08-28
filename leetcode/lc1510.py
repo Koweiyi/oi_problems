@@ -94,8 +94,7 @@ class Solution:
         def solve(x: int) -> bool:
             # 如果是平方数 返回必胜
             if is_squre[x]:
-                return True
-            
+                return True  
             # 如果存在某个平方数使得对方不能必胜， 那么也就是自己必胜
             j = 1 
             while j * j < x:
