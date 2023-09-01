@@ -38,7 +38,7 @@ ll tag[N << 2];
 
 ll ls(ll p){return p << 1;}
 ll rs(ll p){return p << 1|1;}
-ll n;
+ll n; // 原始节点个数
 
 void push_up(ll p){
     sum[p] = sum[ls(p)] + sum[rs(p)];
