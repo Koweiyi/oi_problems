@@ -1,5 +1,5 @@
 package main
-
+// https://www.luogu.com.cn/problem/P3865
 import (
 	"bufio"
 	. "fmt"
@@ -15,10 +15,10 @@ func NewST(a []int) ST {
 	sz := int(math.Log2(float64(n))) + 1
 	st := make(ST, n)
 	for i, v := range a {
-		st[i] = make([]int, sz + 1)
+		st[i] = make([]int, sz)
 		st[i][0] = v
 	}
-	for j := 1; j <= sz; j++ {
+	for j := 1; 1 << j <= n; j++ {
 		for i := 0; i + 1<<j <= n ; i++ {
 			st[i][j] = st.Op(st[i][j-1], st[i+1<<(j-1)][j-1])
 		}
