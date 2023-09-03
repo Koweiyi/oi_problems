@@ -1,19 +1,19 @@
 package main
 
-type TreeNode struct {
+type Node struct {
 	// map 实现可以用 map[rune]*TreeNode
-	children [26]*TreeNode
+	children [26]*Node
     score int 
     is_end bool
 }
 
 type Trie struct{
-    root *TreeNode
+    root *Node
 }
 
 func NewTrie() *Trie{
-    node := &TreeNode{
-        children: [26]*TreeNode{},
+    node := &Node{
+        children: [26]*Node{},
         score: 0,
         is_end: false,
     }
@@ -26,8 +26,8 @@ func(t *Trie) Insert(word string){
     for _, ch := range word{
         id := ch - 'a'
         if cur.children[id] == nil{
-            cur.children[id] = &TreeNode{
-                children: [26]*TreeNode{},
+            cur.children[id] = &Node{
+                children: [26]*Node{},
                 score: 0,
                 is_end: false,
             }
