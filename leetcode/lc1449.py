@@ -90,49 +90,16 @@ class TreeNode:
 # @lc code=start
 class Solution:
     def largestNumber(self, cost: List[int], target: int) -> str:
-        res = "0"
-        mx_len = 0 
-        n_cost =  []
-        num = []
-        for i in range(len(cost)):
-            s = 0 
-            k = 0
-            while s < target:
-                s += cost[i] * (1 << k)
-                n_cost.append(cost[i ] * (1 << k)) 
-                num.append(i + 1)
-                k += 1
-        use = [False] * 10 
-        cnt = [0] * 10 
-
-        @cache
-        def dfs(i: int, target: int) -> bool:
-            nonlocal mx_len
-            if i == -1:
-                if target == 0:
-                    print(target, use, cnt, mx_len)
-                if target == 0:
-                    if sum(cnt) > mx_len:
-                        mx_len = sum(cnt)
-                        res = "".join(str(x)*cnt[x]  for x in range(9, 0, -1) if use[x])
-                        print(res)
-                    elif sum(cnt) == mx_len:
-                        res = max(res, "".join(str(x)*cnt[x]  for x in range(9, 0, -1) if use[x]))
-                    return True 
-                return False 
-            res = False
-            # 选或者不选 
-            if target < n_cost[i]:
-                res = res or dfs(i - 1, target)
-
-
-            use[num[i]] = True
-            cnt[num[i]] += n_cost[i] // cost[num[i] - 1]
-            res = res or dfs(i - 1,target - n_cost[i])
-            use[num[i]] = False
-            cnt[num[i]] -= n_cost[i] // cost[num[i] - 1]
-        dfs(len(n_cost) - 1, target)
-        return res 
+        n = len(cost)
+        dp = ["#"] * (target + 1)
+        dp[0] = ""
+        for i in range(n):
+            for j in range(cost[i], target + 1):
+                if dp[j - cost[i]] != "#":
+                    x = str(i + 1) + dp[j - cost[i]]
+                    if len(x) > len(dp[j]) or len(x) == len(dp[j]) and x > dp[j - cost[i]]:
+                        dp[j] = x 
+        return "0" if dp[target] == "#" else dp[target]
 
 
         # 选出长度最长
