@@ -9,37 +9,34 @@ import (
 	"sort"
 )
 
-
-
 func run(_r io.Reader, _w io.Writer) {
 	in := bufio.NewReader(_r)
 	out := bufio.NewWriter(_w)
 	defer out.Flush()
-	var n int 
+	var n int
 	Fscan(in, &n)
-	
+
 }
 
-func main() { run(os.Stdin, os.Stdout)}
+func main() { run(os.Stdin, os.Stdout) }
 
-type pair struct{x, y int}
+type pair struct{ x, y int }
 type hpp []pair
 
-func(h hpp) Len() int 			{ return len(h)}
-func(h hpp) Less(i, j int) bool { return h[i].x < h[j].x || h[i].x == h[j].x && h[i].y < h[j].y}
-func(h hpp) Swap(i, j int) 		{ h[i], h[j] = h[j], h[i]}
-func(h hpp) top() pair			{ return h[0] }
-func(h *hpp) Pop() any 			{ a := *h; v := a[len(a) - 1] ; a = a[:len(a) - 1] ; *h = a; return v}
-func(h *hpp) Push(v any) 		{ *h = append(*h, v.(pair))}
-func(h *hpp) push(v pair) 		{ heap.Push(h, v)}
-func(h *hpp) pop() int			{ return heap.Pop(h).(int)}
-
+func (h hpp) Len() int           { return len(h) }
+func (h hpp) Less(i, j int) bool { return h[i].x < h[j].x || h[i].x == h[j].x && h[i].y < h[j].y }
+func (h hpp) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h hpp) top() pair          { return h[0] }
+func (h *hpp) Pop() any          { a := *h; v := a[len(a)-1]; a = a[:len(a)-1]; *h = a; return v }
+func (h *hpp) Push(v any)        { *h = append(*h, v.(pair)) }
+func (h *hpp) push(v pair)       { heap.Push(h, v) }
+func (h *hpp) pop() pair         { return heap.Pop(h).(pair) }
 
 type hp struct{ sort.IntSlice }
 
-//func (h hp) Less(i, j int) bool { return h.IntSlice[i] > h.IntSlice[j] } // 加上这行变成最大堆
-func (h hp)  Len() int   { return len(h.IntSlice) }
-func (h hp)  top() int   { return h.IntSlice[0] }
+// func (h hp) Less(i, j int) bool { return h.IntSlice[i] > h.IntSlice[j] } // 加上这行变成最大堆
+func (h hp) Len() int    { return len(h.IntSlice) }
+func (h hp) top() int    { return h.IntSlice[0] }
 func (h *hp) Push(v any) { h.IntSlice = append(h.IntSlice, v.(int)) }
 func (h *hp) Pop() any   { a := h.IntSlice; v := a[len(a)-1]; h.IntSlice = a[:len(a)-1]; return v }
 func (h *hp) push(v int) { heap.Push(h, v) }
