@@ -33,7 +33,6 @@ func main() {
 			j++
 		}
 		if j == len(p) {
-			Fprintln(out, i-len(p)+2)
 			j = nx[j]
 		}
 	}
