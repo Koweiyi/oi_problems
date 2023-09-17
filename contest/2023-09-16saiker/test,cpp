@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+
+int countSquarePartitions(int n) {
+    std::vector<int> dp(n + 1, 0); // 动态规划数组，dp[i] 表示数字 i 的平方数划分方案数量
+    dp[0] = 1; // 初始化 base case
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j * j <= i; j++) {
+            dp[i] += dp[i - j * j];
+        }
+    }
+
+    return dp[n];
+}
+
+int main() {
+    int num;
+    std::cout << "请输入一个整数：";
+    std::cin >> num;
+
+    int result = countSquarePartitions(num);
+    std::cout << "平方数划分方案数量：" << result << std::endl;
+
+    return 0;
+}
