@@ -85,10 +85,46 @@
 # 
 # 
 #
-
+from collections import Counter, defaultdict
+from bisect import bisect_left, bisect_right
+from itertools import accumulate
+from functools import cache
+from typing import Optional
+from typing import List
+from cmath import inf
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 # @lc code=start
 class Solution:
     def minCostSetTime(self, startAt: int, moveCost: int, pushCost: int, targetSeconds: int) -> int:
+        mn = targetSeconds // 60 
+        se = targetSeconds % 60 
+
+        def calc(x, y) -> int:
+            res = 0 
+            if x < 0 or x > 99 or y > 99:
+                return inf 
+            cur = startAt
+            is_num = False 
+            num = x * 100 + y 
+            p = 1000
+            for i in range(4):
+                n = (num // p) % 10
+                p //= 10
+                if n == 0 and not is_num:
+                    continue
+                if cur != n:
+                    res += moveCost 
+                res += pushCost
+                cur = n 
+                is_num = True 
+            return res 
+        return min(calc(mn, se), calc(mn - 1, se + 60))
+
+
 # @lc code=end
 
 # @lcpr-div-debug-arg-start
@@ -107,6 +143,9 @@ class Solution:
 # 0\n1\n2\n76\n
 # @lcpr case=end
 
+# @lcpr case=start
+# 0\n9\n18\n460\n
+# @lcpr case=end
 #
 
 
