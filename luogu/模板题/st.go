@@ -26,10 +26,10 @@ func NewST(a []int) ST {
 	return st
 }
 
-// 查询区间 [l,r)，注意 l 和 r 是从 0 开始算的
+// 查询区间 [l,r]，注意 l 和 r 是从 0 开始算的
 func (st ST) Query(l, r int) int {
-	k := int(math.Log2(float64(r - l)))
-	return st.Op(st[l][k], st[r - 1<<k][k])
+	k := int(math.Log2(float64(r - l + 1)))
+	return st.Op(st[l][k], st[(r + 1) - 1<<k ][k])
 }
 
 // min, max, gcd, ...
@@ -65,7 +65,7 @@ func run(_r io.Reader, _w io.Writer) {
 	st := NewST(a)	
 	for q := 0 ; q < m ; q ++ {
 		l, rr := read(), read()
-		Fprintln(out, st.Query(l - 1, rr))
+		Fprintln(out, st.Query(l - 1, rr - 1))
 	}
 }
 func main() { run(os.Stdin, os.Stdout)}
