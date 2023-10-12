@@ -169,29 +169,28 @@ class SegTree:
             b = self.queryMin(node.right, mid+1, hi, left, right)
         return min(a, b)
 class StockPrice:
-
     def __init__(self):
-        self.n = 1000000009
-        self.A = SegTree(self.n)
-        self.root = self.A.root
+        from sortedcontainers import SortedList
+        self.sl = SortedList()
+        self.mp = {}
         self.cur = 0 
 
-
     def update(self, timestamp: int, price: int) -> None:
+        if timestamp in self.mp:
+            self.sl.remove(self.mp[timestamp])
+        self.sl.add(price)
+        self.mp[timestamp] = price 
         self.cur = max(self.cur, timestamp)
-        self.A.update(self.root, 0, self.n - 1, timestamp, timestamp, price)
         
-        
-
     def current(self) -> int:
-        return self.A.queryMax(self.root, 0, self.n - 1, self.cur, self.cur)
+        return self.mp[self.cur]
 
     def maximum(self) -> int:
-        return self.A.queryMax(self.root, 0, self.n - 1, 1, self.n - 1)
+        return self.sl[-1]
 
 
     def minimum(self) -> int:
-        return self.A.queryMin(self.root, 0, self.n - 1, 1, self.n - 1)
+        return self.sl[0]
 
 
 # Your StockPrice object will be instantiated and called as such:
@@ -206,7 +205,7 @@ class StockPrice:
 
 #
 # @lcpr case=start
-# ["StockPrice", "update", "update", "current", "maximum", "update", "maximum", "update", "minimum"][[], [1, 10], [2, 5], [], [], [1, 3], [], [4, 2], []]\n
+# ["StockPrice", "update", "update", "current", "maximum", "update", "maximum", "update", "minimum"]\n[[], [1, 10], [2, 5], [], [], [1, 3], [], [4, 2], []]\n
 # @lcpr case=end
 
 #
