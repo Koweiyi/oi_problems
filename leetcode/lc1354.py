@@ -96,6 +96,8 @@ class Solution:
             heappush(target, -left if p % left == 0 else -(p % left))
         return True
 
+        "{\"version\"" + data + "..."
+
 
 # @lc code=end
 
