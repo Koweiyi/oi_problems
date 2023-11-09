@@ -95,6 +95,7 @@ class Solution:
                     res = res or dfs(i - 1, j)
                 return res 
             return s[i - 1] == p[j - 1] and dfs(i - 1, j - 1)
+        # 打印"hello world"
         return dfs(len(s), len(p))
         
 # @lc code=end
