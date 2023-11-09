@@ -33,29 +33,11 @@ const int N = 100005;
 
 int main(int argc, char const *argv[]){
     ios::sync_with_stdio(0),std::cin.tie(0);
-    int v;
-    cin >> v;
-    string s;
-    cin >> s;
-    int cnt1 = 0, cnt2 = 0; 
-    ll res = 0;
-    for (char ch : s){
-        if(ch == '1'){
-            cnt1 ++;
-        }else{
-            cnt2 ++;
-        }
-        if(cnt1 < v){
-            res += cnt1;
-            if (cnt1 + 2 * cnt2 <= v){
-                res += cnt2;
-            }else{
-                res += (v - cnt1) / 2;
-            }
-        }else{
-            res += v;
-        }
-    }
-    printf("%d", res);
+
+    int n;
+    cin >> n; 
+    
+    printf("%d", n);
+
     return 0;
 }
