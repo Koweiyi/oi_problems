@@ -29,6 +29,7 @@ const int maxn = 100005;
 inline ll read(void)
 {
     int s = 0, w = 1;
+    
     char ch = getchar();
     for (; ch < '0' || ch > '9'; ch = getchar())
         if (ch == '-')
@@ -39,8 +40,7 @@ inline ll read(void)
 }
 
 inline void out(ll a)
-{
-    if (a >= 10)
+{   if (a >= 10)
         out(a / 10);
     putchar(a % 10 + '0');
 }
