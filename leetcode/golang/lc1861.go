@@ -84,7 +84,6 @@
 // @lcpr-template-start
 package leetcode
 
-import "fmt"
 
 type TreeNode struct {
 	Val   int
